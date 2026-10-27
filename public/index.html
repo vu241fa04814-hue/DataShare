@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataShare — Send Content Simply</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="decor decor-one"></div><div class="decor decor-two"></div><div class="decor decor-three"></div>
+  <main class="layout">
+    <section class="panel send-panel">
+      <header class="panel-heading">
+        <div class="icon icon-blue" aria-hidden="true">➤</div>
+        <div><h1>Send Content</h1><p>Share text and files with a six-digit code</p></div>
+      </header>
+      <div class="tabs" role="tablist" aria-label="Choose content type">
+        <button class="tab active" id="textTab" role="tab" aria-selected="true">T&nbsp; Send Text</button>
+        <button class="tab" id="fileTab" role="tab" aria-selected="false">▤&nbsp; Send File</button>
+      </div>
+      <section id="textView" class="send-view">
+        <div class="textarea-wrap">
+          <textarea id="textInput" placeholder="Paste or type text, code snippets, notes, or links here..."></textarea>
+          <span class="counter" id="counter">0 chars • 0 lines</span>
+        </div>
+      </section>
+      <section id="fileView" class="send-view hidden">
+        <label class="dropzone" id="dropzone" for="fileInput">
+          <input type="file" id="fileInput" hidden>
+          <span class="upload-icon">☁</span>
+          <strong id="filePrompt">Drop files here or click to upload</strong>
+          <small>Supports all file types • Maximum 100 MB • You can also paste a file</small>
+          <span id="fileInfo" class="file-info"></span>
+        </label>
+      </section>
+      <div class="expiry-row">
+        <label for="expiryHours">▦ &nbsp; Custom Expiry</label>
+        <select id="expiryHours" aria-label="Content expiry">
+          <option value="24" selected>24 hours (Default)</option><option value="1">1 hour</option>
+          <option value="6">6 hours</option><option value="12">12 hours</option>
+          <option value="48">2 days</option><option value="72">3 days</option><option value="168">7 days</option>
+        </select>
+      </div>
+      <div class="notice"><span>ⓘ</span><p>Content is stored temporarily and removed after expiry.</p></div>
+      <button class="primary-button" id="generateButton" disabled>➤ &nbsp; Generate Share Code</button>
+      <div id="shareResult" class="share-result hidden" aria-live="polite"></div>
+      <div id="sendError" class="error-message hidden" aria-live="polite"></div>
+    </section>
+    <section class="panel receive-panel">
+      <header class="panel-heading receive-heading">
+        <div class="icon icon-purple" aria-hidden="true">⚿</div>
+        <div><h2>Receive Content</h2><p>Enter the 6-digit access code to retrieve files or text</p></div>
+      </header>
+      <form id="retrieveForm">
+        <div class="code-boxes" id="codeBoxes" aria-label="Six-digit access code">
+          <input class="code-input" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code">
+          <input class="code-input" inputmode="numeric" maxlength="1" aria-label="Digit 2">
+          <input class="code-input" inputmode="numeric" maxlength="1" aria-label="Digit 3">
+          <input class="code-input" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+          <input class="code-input" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+          <input class="code-input" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+        </div>
+        <button class="primary-button retrieve-button" id="retrieveButton" type="submit" disabled>⇩ &nbsp; Retrieve Content</button>
+      </form>
+      <div id="receiveResult" class="receive-result hidden" aria-live="polite"></div>
+      <div id="receiveError" class="error-message hidden" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer>Simple sharing. Temporary access. <span>DataShare</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
